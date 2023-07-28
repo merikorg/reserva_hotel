@@ -1,0 +1,22 @@
+<nav class="navbar fixed-top"  [ngClass]="{'navbar-scrolled': isNavbarScrolled}">
+  <div class="container-fluid d-flex justify-content-between">
+    <div>
+      <a class="navbar-brand text-white">ReservaYA.com</a>
+    </div>
+    <div>
+      <button type="button" class="btn btn-outline-warning m-3" [routerLink]="['login']">ir al portal</button>
+    </div>
+  </div>
+</nav>
+
+
+<div class="banner-container">
+  <div class="darken-gradient"></div>
+  <img
+    src="assets/img/banner.webp"
+    alt="Banner"
+    class="banner-image"
+  />
+</div>
+
+<h1 class="text-white">¡Reserva tu habitación con los mejores!</h1>

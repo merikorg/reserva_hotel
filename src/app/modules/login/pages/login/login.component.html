@@ -1,0 +1,52 @@
+<form [formGroup]="loginForm" (ngSubmit)="sendDataLogin()">
+  <div class="row text-center mb-4">
+    <div class="col">
+      <h3 class="text-white">ReservaYA.com</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="mb-3">
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Ingresa tu correo."
+          formControlName="email"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="mb-3">
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Ingresa tu contraseña."
+          formControlName="password"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row text-center mt-2">
+    <div class="col">
+      <button *ngIf="!loading_login" type="submit" class="btn btn-success">
+        Iniciar Sesión
+      </button>
+      <button
+        *ngIf="loading_login"
+        type="button"
+        class="btn btn-success"
+        disabled
+      >
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </button>
+    </div>
+    <div class="col">
+      <button type="button" routerLink="/login/register" class="btn btn-secondary">Registrarse</button>
+    </div>
+  </div>
+</form>
+<app-alert *ngIf="alert" [tipo]="tipo" [texto]="texto"></app-alert>

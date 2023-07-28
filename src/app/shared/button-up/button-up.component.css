@@ -1,0 +1,42 @@
+/* Estilos para el botón */
+#btnScrollToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    z-index: 9999;
+}
+
+/* Estilos para la animación de aparición */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Estilos para la animación de desaparición */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.fade-in-out {
+    animation-duration: 0.5s;
+}
+
+.show-scroll-top {
+    animation: fadeIn 0.5s;
+}
+
+.hide-scroll-top {
+    animation: fadeOut 0.5s;
+}

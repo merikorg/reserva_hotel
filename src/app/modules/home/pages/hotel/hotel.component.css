@@ -1,0 +1,22 @@
+.container-search {
+    background-color: rgba(220, 220, 220, 0.695);
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    border-radius: 16px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    color: rgb(0, 0, 0);
+    font-size: large;
+}
+
+.container-card{
+    max-width: 50%;
+}
+
+@media (max-width: 768px) {
+    .container-search {
+        width: 80%;
+    }
+}

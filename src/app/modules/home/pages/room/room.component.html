@@ -1,0 +1,175 @@
+<h3 class="text-white">{{ nombre }}</h3>
+
+<div class="container mt-3 container-card">
+  <div class="row">
+    <div class="col">
+      <app-card-room
+        *ngFor="let room of rooms"
+        [tipo]="room.tipo"
+        [impuesto]="room.impuesto"
+        [nombre]="room.nombre"
+        [descripcion]="room.descripcion"
+        [costo]="room.costo"
+        [ubicacion]="room.ubicacion"
+        [disponibilidad]="room.disponibilidad"
+        [id]="room.id"
+        (nombre_card)="getNombreRoom($event)"
+      ></app-card-room>
+    </div>
+  </div>
+</div>
+
+<app-alert [texto]="texto" [tipo]="tipo" *ngIf="alert"></app-alert>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="ModalReserva"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Reservar: {{ nombre_room }}
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          #closeModal
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="reservaForm" (ngSubmit)="sendReserva()">
+          <div class="mb-3">
+            <label for="nombres" class="form-label">Nombres:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombres"
+              formControlName="nombres"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="apellidos" class="form-label">Apellidos:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="apellidos"
+              formControlName="apellidos"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="fecha" class="form-label">Fecha de Nacimiento:</label>
+            <input
+              type="date"
+              class="form-control"
+              id="fecha"
+              formControlName="fecha_nacimiento"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Género:</label>
+            <select class="form-select" formControlName="genero">
+              <option>Seleccione</option>
+              <option value="otro">Otros</option>
+              <option value="M">Masculino</option>
+              <option value="F">Femenino</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Tipo de Documento:</label>
+            <select class="form-select" formControlName="tipo_documento">
+              <option>Seleccione</option>
+              <option value="extranjera">Cédula de Extranjería</option>
+              <option value="cedula">Cédula de Ciudadanía</option>
+              <option value="pasaporte">Pasaporte</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="numero" class="form-label">Número de Documento:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="numero"
+              formControlName="num_documento"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              formControlName="email"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono:</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="telefono"
+              formControlName="telefono"
+            />
+          </div>
+
+          <div class="border my-4"></div>
+
+          <div class="row text-center">
+            <div class="col">
+              <h5>Contacto de Emergencia</h5>
+            </div>
+          </div>
+
+          <div class="my-3">
+            <label for="nombreContact" class="form-label"
+              >Nombre Completo:</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="nombreContact"
+              formControlName="nombre_contacto"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="telefonoContact" class="form-label">Teléfono:</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="telefonoContact"
+              formControlName="telefono_contacto"
+            />
+          </div>
+
+          <div class="row text-center">
+            <div class="col">
+              <button *ngIf="!loading" type="submit" class="btn btn-success">Reservar</button>
+              <button *ngIf="loading" type="button" class="btn btn-success" disabled>
+                <div class="spinner-border" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </button>
+            </div>
+            <div *ngIf="errorForm" class="col">
+              <h5 class="text-danger">* No dejar campos vacios</h5>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

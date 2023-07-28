@@ -1,0 +1,154 @@
+<div class="container mt-4">
+  <div class="row mb-5">
+    <div class="col">¡Gestiona tu hotel!</div>
+  </div>
+  <div class="row my-5 text-end">
+    <div class="col">
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#Modal"
+        (click)="resetModal()"
+      >
+        Registrar Hotel
+      </button>
+    </div>
+  </div>
+  <div class="row my-5">
+    <div class="col">
+      <app-table
+        [columns]="columns"
+        [collection]="collection"
+        (openModal)="openModal($event)"
+      ></app-table>
+    </div>
+  </div>
+</div>
+
+<app-alert [texto]="texto" [tipo]="tipo" *ngIf="alert"></app-alert>
+
+<!-- Modal register - edit -->
+<div
+  class="modal fade"
+  id="Modal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          {{ editItem ? "Editar" : "Registrar" }}
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          #closeButton
+        ></button>
+      </div>
+      <form [formGroup]="hotelForm" (ngSubmit)="submitForm()">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombre"
+              name="nombre"
+              formControlName="nombre"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <textarea
+              class="form-control"
+              id="descripcion"
+              name="descripcion"
+              formControlName="descripcion"
+            ></textarea>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="fechaEntrada" class="form-label"
+                >Fecha de entrada</label
+              >
+              <input
+                type="date"
+                class="form-control"
+                id="fechaEntrada"
+                name="fechaEntrada"
+                formControlName="fechaEntrada"
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="fechaSalida" class="form-label"
+                >Fecha de salida</label
+              >
+              <input
+                type="date"
+                class="form-control"
+                id="fechaSalida"
+                name="fechaSalida"
+                formControlName="fechaSalida"
+              />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="cantidadPersonas" class="form-label"
+              >Cantidad de personas</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="cantidadPersonas"
+              name="cantidadPersonas"
+              formControlName="cantidad"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="ciudad" class="form-label">Ciudad</label>
+            <input
+              type="text"
+              class="form-control"
+              id="ciudad"
+              name="ciudad"
+              formControlName="ciudad"
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <button
+            *ngIf="!editItem && !loading"
+            type="submit"
+            class="btn btn-primary"
+          >
+            Registrar
+          </button>
+          <button *ngIf="loading" type="submit" class="btn btn-primary">
+            <div class="spinner-grow" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </button>
+          <button
+            *ngIf="editItem && !loading"
+            type="submit"
+            class="btn btn-primary"
+          >
+            Editar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

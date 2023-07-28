@@ -1,0 +1,25 @@
+<div class="card mt-3">
+  <div class="card-header">{{nombre}}</div>
+  <div class="card-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-8">
+          <p class="card-text">{{descripcion}}</p>
+        </div>
+        <div class="col-4">
+          <p>Fecha de entrada: {{fechaEntrada}}</p>
+          <p>Fecha de salida: {{fechaSalida}}</p>
+          <p>Cantidad de personas: {{cantidad}}</p>
+          <p>Ciudad: {{ciudad}}</p>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col">
+          <button type="button" class="btn btn-secondary" (click)="navigateRoom()">
+            Buscar Habitaciones
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

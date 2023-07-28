@@ -1,0 +1,43 @@
+<div class="card mt-3">
+  <div class="card-header">{{ nombre }}</div>
+  <div class="card-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-8">
+          <p class="card-text">{{ descripcion }}</p>
+        </div>
+        <div class="col-4">
+          <p>Ubicación: {{ ubicacion }}</p>
+          <p>
+            Disponibilidad:
+            <i [ngClass]="disponibilidad === 'disponible' ? 'fa-regular fa-circle-check' : 'fa-regular fa-circle-xmark'"></i>
+          </p>
+          
+          <p>Tipo: {{ tipo }}</p>
+          <p>Costo base: {{ costo }}</p>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col">
+          <button
+            type="button"
+            class="btn btn-success"
+            data-bs-toggle="modal"
+            data-bs-target="#ModalReserva"
+            (click)="setDataNombre(nombre,id)"
+            *ngIf="disponibilidad === 'disponible'"
+          >
+            Reservar
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            *ngIf="disponibilidad !== 'disponible'"
+          >
+            No disponible
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

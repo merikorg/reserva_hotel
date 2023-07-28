@@ -1,0 +1,15 @@
+.alert {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+}
+
+.alert-danger {
+    background-color: rgb(197, 37, 37);
+    color: white;
+}
+
+.alert-success {
+    background-color: rgb(33, 123, 0);
+    color: white;
+}

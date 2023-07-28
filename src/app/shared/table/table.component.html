@@ -1,0 +1,109 @@
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col" *ngFor="let column of columns">{{ column.title }}</th>
+        <th *ngIf="collection==='reservas'" scope="col">Detalle</th>
+        <th scope="col" class="text-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td *ngFor="let prop of getPropertiesOrder(item)">{{ item[prop] }}</td>
+        <td class="text-center" *ngIf="collection === 'reservas'">
+          <a
+            class="m-3"
+            style="color: rgb(206, 118, 3); cursor: pointer"
+            data-bs-toggle="modal"
+            data-bs-target="#ModalDetalle"
+            (click)="openModalModi(item)"
+            ><i class="fas fa-edit"></i
+          ></a>
+        </td>
+        <td class="text-center">
+          <a
+            class="m-3"
+            style="color: red; cursor: pointer"
+            data-bs-toggle="modal"
+            data-bs-target="#ModalDelete"
+            (click)="id = item.id"
+            ><i class="fas fa-trash-alt"></i
+          ></a>
+          <a
+            class="m-3"
+            style="color: blue; cursor: pointer"
+            data-bs-toggle="modal"
+            data-bs-target="#Modal"
+            (click)="openModalModi(item)"
+            *ngIf="!viewReserva"
+            ><i class="fas fa-edit"></i
+          ></a>
+          <label *ngIf="!viewReserva">
+            <input
+              type="checkbox"
+              [(ngModel)]="item.estado"
+              style="display: none"
+              (change)="changeState(item.id, $event.target)"
+            />
+            <i
+              class="m-3"
+              [ngClass]="{
+                'far fa-square': item.estado == 'inactivo',
+                'far fa-check-square': item.estado == 'activo'
+              }"
+              style="cursor: pointer"
+            ></i>
+          </label>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="ModalDelete"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          #closeButton
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <h5>¿Desea eliminar el item?: {{ id }}</h5>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="loading" type="submit" class="btn btn-danger">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </button>
+        <button
+          *ngIf="!loading"
+          type="submit"
+          class="btn btn-danger"
+          (click)="deleteItem(id)"
+        >
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-alert [texto]="texto" [tipo]="tipo" *ngIf="alert"></app-alert>

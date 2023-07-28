@@ -1,0 +1,77 @@
+<form [formGroup]="registerForm" (ngSubmit)="sendDataRegister()">
+  <div class="row text-center mb-4">
+    <div class="col">
+      <h3 class="text-white">ReservaYA.com</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Nombre"
+          formControlName="nombre"
+          name="nombre"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Apellido"
+          formControlName="apellido"
+          name="apellido"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="mb-3">
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Correo."
+          formControlName="email"
+          name="email"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="mb-3">
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Ingresa tu contraseña."
+          formControlName="password"
+          name="password"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row text-center mt-2">
+    <div class="col">
+      <button *ngIf="!loading" type="submit" class="btn btn-success">
+        Registrarse
+      </button>
+      <button
+        *ngIf="loading"
+        type="button"
+        class="btn btn-success"
+        disabled
+      >
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </button>
+    </div>
+  </div>
+</form>
+<app-alert *ngIf="alert" [tipo]="tipo" [texto]="texto"></app-alert>

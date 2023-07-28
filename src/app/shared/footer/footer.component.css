@@ -1,0 +1,13 @@
+.footer{
+    bottom: 0px;
+    max-width: 80%;
+}
+
+.footer i{
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.footer i:hover{
+    color: gray;
+}
